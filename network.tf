@@ -40,6 +40,40 @@ resource "oci_core_security_list" "public_security_list" {
   }
 }
 
+resource "oci_core_security_list" "sqlnet_security_list" {
+  compartment_id  = var.compartment_ocid
+  display_name    = "SQLNet security list"
+  vcn_id          = oci_core_virtual_network.lab-vcn.id
+  egress_security_rules {
+    destination     = "0.0.0.0/0"
+    protocol        = "6"
+  }
+  ingress_security_rules {
+    tcp_options {
+      max             = 51521
+      min             = 51521
+    }
+    protocol        = "6"
+    source          = "0.0.0.0/0"
+  }
+  ingress_security_rules {
+    tcp_options {
+      max             = 55500
+      min             = 55500
+    }
+    protocol        = "6"
+    source          = "0.0.0.0/0"
+  }
+  ingress_security_rules {
+    tcp_options {
+      max             = 58080
+      min             = 58080
+    }
+    protocol        = "6"
+    source          = "0.0.0.0/0"
+  }
+}
+
 resource "oci_core_subnet" "public" {
   cidr_block      = cidrsubnet(var.vcn_cidr, 8, 0)
   display_name    = "Public subnet"
