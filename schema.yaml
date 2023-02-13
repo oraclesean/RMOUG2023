@@ -1,0 +1,111 @@
+title: "Deploy a containerized database instance on OCI"
+description: "Deploy a containerized Oracle database resource on OCI using a single compute instance. "
+stackDescription: "Oracle Database on containers lab quickstart automation. It creates all necessary OCI resources to run an Oracle database in a Docker container on Oracle Cloud Infrastructure using terraform."
+informationalText: "This stack provisions a new compartment, adds necessary VCN and network assets, and creates and provisions a compute instance ready to run an Oracle database container."
+schemaVersion: 1.1.0
+version: "20190304"
+locale: "en"
+
+source:
+  type: quickstart
+
+variableGroups:
+  - title: "General Configuration"
+    visible: false
+    variables:
+    - ${tenancy_ocid}
+    - ${compartment_ocid}
+    - ${region}
+    - ${user_ocid}
+    - ${fingerprint}
+    - ${private_key_path}
+    - ${private_key_password}
+    - ${private_key}
+    - ${availability_domain_name}
+    - ${block_volume_name}
+    - ${block_volume_size}
+    - ${bv_attachment_display_name}
+    - ${bv_attachment_name}
+    - ${compartment_ocid}
+    - ${instance_memory}
+    - ${instance_name}
+    - ${instance_os}
+    - ${instance_shape}
+    - ${lab_name}
+    - ${label_prefix}
+    - ${linux_os_version}
+    - ${ocpu_count}
+    - ${public_sn_dns_label}
+    - ${vcn_cidr}
+    - ${vcn_dns_label}
+  - title: "License Agreement"
+    visible: true
+    variables:
+    - ${accept_license}
+  - title: "Lab Version"
+    visible: accept_license
+    variables:
+    - ${show_advanced}
+  - title: "Optional Configuration"
+    visible: show_advanced
+    variables:
+    - generate_public_ssh_key
+    - public_ssh_key
+
+outputGroups:
+  - title: Service Endpoints
+    outputs:
+    - lab_public_ip
+  - title: Generated Passwords
+    outputs:
+    - generated_ssh_private_key
+
+outputs:
+  lab_public_ip:
+    type: link
+    title: "Compute instance public IP"
+    description: "Compute instance public IP"
+  generated_ssh_private_key:
+    title: "Generated SSH Private Key"
+    description: "Generated SSH Private Key"
+    type: copyableString
+    visible: true
+
+variables:
+  accept_license:
+    title: "I have reviewed and accept the Oracle Licensing Agreement."
+    description: "You must agree to and accept the Oracle Standard Terms and Restrictions listed on the Oracle Container Registry (https://container-registry.oracle.com) prior to running this lab. By checking this box, you affirm that you have accepted the Oracle Standard Terms and Restrictions"
+    type: boolean
+    required: true
+    default: false
+
+  show_advanced:
+    type: boolean
+    title: "Show advanced options?"
+    description: "Shows advanced options."
+    visible:
+      and:
+        - accept_license
+    default: false
+
+  generate_public_ssh_key:
+    type: boolean
+    title: "Auto generate public ssh key?"
+    required: true
+    visible:
+      and:
+        - show_advanced 
+
+  public_ssh_key:
+    type: oci:core:ssh:publickey
+    title: "Import your own SSH public key"
+    additionalProps:
+      allowMultiple: true
+    description: "SSH key for remote access to the public IP"
+    required: false
+    pattern: "((^(ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)(,((ssh-rsa AAAAB3NzaC1yc2|ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNT|ecdsa-sha2-nistp384 AAAAE2VjZHNhLXNoYTItbmlzdHAzODQAAAAIbmlzdHAzOD|ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1Mj|ssh-ed25519 AAAAC3NzaC1lZDI1NTE5|ssh-dss AAAAB3NzaC1kc3)[0-9A-Za-z+\/]+[=]{0,3})( [^,]*)?)*$"
+    visible: 
+      and:
+        - show_advanced
+        - not:
+          - generate_public_ssh_key
