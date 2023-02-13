@@ -36,13 +36,13 @@ variable "public_sn_dns_label" {
 
 # Instance
 variable "instance_shape" {
-  default     = "VM.Standard.E3.Flex"
+  default     = "VM.Standard.E2.1.Micro"
 }
 variable "ocpu_count" {
-  default     = 2
+  default     = 1
 }
 variable "instance_memory" {
-  default     = 32
+  default     = 1
 }
 variable "instance_name" {
   default     = "RMOUG"

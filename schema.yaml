@@ -79,6 +79,50 @@ variables:
     required: true
     default: false
 
+  instance_shape:
+    type: enum
+    required: true
+    title: "Select the instance shape."
+    description: "Select the instance shape."
+    visible:
+      and:
+        - accept_license
+    default: "VM.Standard.E2.1.Micro"
+    enum:
+    - "VM.Standard.E2.1.Micro"
+    - "VM.Standard.E3.Flex"
+
+  ocpu_count:
+    type: enum
+    required: true
+    title: "Select the number of OCPU for VM.Standard.E3.Flex."
+    description: "Select the number of OCPU for VM.Standard.E3.Flex."
+    visible:
+      and:
+        - accept_license
+        - eq:
+          - instance_shape
+          - "VM.Standard.E3.Flex"
+    default: 1
+    enum:
+    - 1
+    - 2  
+
+  instance_memory:
+    type: integer
+    minimum: 1
+    maximum: 16 
+    required: true
+    title: "Select the instance memory for VM.Standard.E3.Flex."
+    description: "Select the instance memory for VM.Standard.E3.Flex."
+    visible:
+      and:
+        - accept_license
+        - eq:
+          - instance_shape
+          - "VM.Standard.E3.Flex"
+    default: 8
+
   show_advanced:
     type: boolean
     title: "Show advanced options?"
