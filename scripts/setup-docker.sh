@@ -2,23 +2,10 @@
 export CONTAINER_NAME=LAB
 export STEP=1
 
-echo "Pulling the Oracle database version database image" | tee -a /tmp/setup-docker.log
-docker pull phx.ocir.io/ax1cxmhdo0fd/oracle/db:
-docker images | tee -a /tmp/setup-docker.log
+echo "Cloning the Oracle container repository" | tee -a /tmp/setup-docker.log
+sudo su - oracle -c "git clone https://github.com/oracle/docker-images /oradata"
 
-#echo "Pulling demo data" | tee -a /tmp/setup-docker.log
-#sudo su - oracle -c "curl https://objectstorage.us-phoenix-1.oraclecloud.com/p/eYQyRavdcR2ouoY8-5vkGQW1WPRA9TkW1VRHYEbU3VPTRmo48j_mvAZPb9b2eD4V/n/ax1cxmhdo0fd/b/oraclesean-object-store/o/${lab_version}.tgz > /oradata/backups/${lab_version}.tgz"
-#echo "Expanding demo data to /oradata/backups" | tee -a /tmp/setup-docker.log
-#sudo su - oracle -c "tar -C /oradata/backups -xzf /oradata/backups/${lab_version}.tgz"
-#echo "Removing tar file" | tee -a /tmp/setup-docker.log
-#sudo su - oracle -c "rm /oradata/backups/${lab_version}.tgz"
+echo "Pulling database installation file" | tee -a /tmp/setup-docker.log
+sudo su - oracle -c "curl https://objectstorage.us-phoenix-1.oraclecloud.com/p/DZ57l6Jr-KLyJzudUb11MYsDL-qBGU_cUNBAQsQvMFEbTrR-EbVoGVFTWQk6L_pM/n/axh0z5q052rw/b/RMOUG2023/o/LINUX.X64_193000_db_home.zip > /oradata/docker-images/OracleDatabase/SingleInstance/dockerfiles/19.3.0/LINUX.X64_193000_db_home.zip"
 
-#echo "Pulling scripts repo" | tee -a /tmp/setup-docker.log
-#sudo su - oracle -c "git clone https://github.com/oraclesean/upgrade-21c-lab-scripts /oradata/scripts"
-
-#echo "Starting container" | tee -a /tmp/setup-docker.log
-#/oradata/scripts/refresh_container.sh
-#sleep 10
-#docker ps -a | tee -a /tmp/setup-docker.log
-#docker logs $CONTAINER_NAME | tee -a /tmp/setup-docker.log
-echo "Docker and database setup is complete" | tee -a /tmp/setup-docker.log
+echo "Docker setup is complete" | tee -a /tmp/setup-docker.log
