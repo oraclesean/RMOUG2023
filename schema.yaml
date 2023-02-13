@@ -42,10 +42,12 @@ variableGroups:
     visible: true
     variables:
     - ${accept_license}
-  - title: "Lab Version"
+  - title: "Instance Shape"
     visible: accept_license
     variables:
-    - ${show_advanced}
+    - ${instance_shape}
+    - ${ocpu_count}
+    - ${instance_memory}
   - title: "Optional Configuration"
     visible: show_advanced
     variables:
