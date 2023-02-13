@@ -26,7 +26,7 @@ packages:
 runcmd:
   - groupmod -g 54321 oinstall
   - usermod -u 54321 oracle
-  - mkdir -p /oradata/{.docker,LAB,scripts,backups}
+  - mkdir -p /oradata/{.docker,docker-images,lab}
   - chown -R oracle:oinstall /oradata
   - chown root:root  /oradata/.docker
   - [ systemctl, daemon-reload ]
