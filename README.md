@@ -8,7 +8,7 @@ To deploy this lab on Oracle Cloud Infrastructure, [create a new Always Free Tie
 
 Then, click on the "Deploy to Oracle Cloud" button:
 
-[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/oraclesean/RMOUG2023-lab/archive/refs/tags/v1.05.zip)
+[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/oraclesean/RMOUG2023/archive/refs/tags/RMOUG-lab.zip)
 
 Accept the Oracle Terms of Use and click the "Next" button.
 
