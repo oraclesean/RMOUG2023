@@ -5,6 +5,9 @@ export STEP=1
 echo "Cloning the Oracle container repository" | tee -a /tmp/setup-docker.log
 sudo su - oracle -c "git clone https://github.com/oracle/docker-images /oradata/docker-images"
 
+echo "Cloning the lab scripts" | tee -a /tmp/setup-docker.log
+sudo su - oracle -c "git clone https://github.com/oraclesean/oracle-container-lab /oradata/scripts"
+
 echo "Pulling the Oracle Database image" | tee -a /tmp/setup-docker.log
 docker pull phx.ocir.io/axh0z5q052rw/oracle:19.3.0
 
