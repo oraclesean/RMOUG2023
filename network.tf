@@ -51,7 +51,7 @@ resource "oci_core_security_list" "sqlnet_security_list" {
   ingress_security_rules {
     tcp_options {
       max             = 51521
-      min             = 51521
+      min             = 51524
     }
     protocol        = "6"
     source          = "0.0.0.0/0"
@@ -59,7 +59,7 @@ resource "oci_core_security_list" "sqlnet_security_list" {
   ingress_security_rules {
     tcp_options {
       max             = 55500
-      min             = 55500
+      min             = 55503
     }
     protocol        = "6"
     source          = "0.0.0.0/0"
@@ -67,7 +67,7 @@ resource "oci_core_security_list" "sqlnet_security_list" {
   ingress_security_rules {
     tcp_options {
       max             = 58080
-      min             = 58080
+      min             = 58083
     }
     protocol        = "6"
     source          = "0.0.0.0/0"

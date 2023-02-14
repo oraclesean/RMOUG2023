@@ -89,9 +89,9 @@ variables:
     visible:
       and:
         - accept_license
-    default: "VM.Standard.E2.1.Micro"
+    default: "VM.Standard.E3.Flex"
     enum:
-    - "VM.Standard.E2.1.Micro"
+    - "VM.Standard.E2.1"
     - "VM.Standard.E3.Flex"
 
   ocpu_count:
@@ -112,7 +112,7 @@ variables:
 
   instance_memory:
     type: integer
-    minimum: 1
+    minimum: 4
     maximum: 16 
     required: true
     title: "Select the instance memory for VM.Standard.E3.Flex."
