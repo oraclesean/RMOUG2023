@@ -3,6 +3,13 @@ Lab resources for working with Oracle databases in containers using Oracle Cloud
 
 This lab uses Docker images and prepared snapshots, allowing students to quickly refresh the lab to any point. It runs on Oracle Cloud Infrastructure but does *not* use Always-Free resources. However, it will run on an Oracle Free Tier account using credits during the introductory period. Cost for running the lab is approximately $2.50/day for block storage and $3-5/day for compute resources. Compute doesn't incur charges if the instance is stopped. It is possible to run *most* of this on Always Free resources but the performance and experience are poor, and the limited memory of VM.Standard.E2.1.Micro instances prevent database containers from running.
 
+# Provision Lab Resources
+There are two options available for provisioning the lab:
+* [Deploy the resources on Oracle Cloud Infrastructure.](#deploy-on-oci)
+* [Install Docker Desktop and download files to your laptop.](#deploy-lab-resources-locally)
+
+OPTIONAL: If you want to experiment with remote connections to container databases, [download SQL Developer](https://www.oracle.com/database/sqldeveloper/technologies/download/) and set it up on your machine.
+
 ## Deploy on OCI
 To deploy this lab on Oracle Cloud Infrastructure, [create a new Always Free Tier account](https://signup.cloud.oracle.com), log in to an existing Free Tier account during the trial period, or log into a paid account.
 
