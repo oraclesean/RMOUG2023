@@ -1,6 +1,11 @@
 #!/bin/bash
-export CONTAINER_NAME=LAB
-export STEP=1
+echo "Creating the Alpine filesystems" | tee -a /tmp/setup-docker.log
+sudo su - opc -c "mkdir -p /home/opc/{alpine,overlay/{container,upper,work}}"
+sudo su - opc -c "curl https://dl-cdn.alpinelinux.org/alpine/v3.17/releases/x86_64/alpine-minirootfs-3.17.2-x86_64.tar.gz > ~/alpine-minirootfs-3.17.2-x86_64.tar.gz"
+sudo su - opc -c "tar -xvzf ~/alpine-minirootfs-3.17.2-x86_64.tar.gz -C /home/opc/alpine/ && rm /home/opc/alpine-minirootfs-3.17.2-x86_64.tar.gz"
+
+echo "Mounting the Alpine filesystem" | tee -a /tmp/setup-docker.log
+mount -t overlay overlay -o lowerdir=/home/opc/alpine,upperdir=/home/opc/overlay/upper,workdir=/home/opc/overlay/work /home/opc/overlay/container
 
 echo "Cloning the Oracle container repository" | tee -a /tmp/setup-docker.log
 sudo su - oracle -c "git clone https://github.com/oracle/docker-images /oradata/docker-images"
