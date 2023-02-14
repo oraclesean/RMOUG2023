@@ -83,6 +83,8 @@ If you prefer to run the lab on your local machine, you'll need to provision res
 
     `docker images`
 
+* Open the [lab scripts](https://github.com/oraclesean/oracle-container-lab) in a browser window.
+
 * OPTIONAL: Before you can build your own images, [download the Oracle 19c installation binaries from https://www.oracle.com/database/technologies/oracle-database-software-downloads.html](https://www.oracle.com/database/technologies/oracle-database-software-downloads.html).
 
     *IMPORTANT: No matter what OS you're using, download the 19.3 ZIP file for Linux x86-64!*
