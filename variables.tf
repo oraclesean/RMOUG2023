@@ -36,7 +36,7 @@ variable "public_sn_dns_label" {
 
 # Instance
 variable "instance_shape" {
-  default     = "VM.Standard.E3.Flex"
+  default     = "VM.Standard.E4.Flex"
 }
 variable "ocpu_count" {
   default     = 1

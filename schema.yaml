@@ -89,10 +89,11 @@ variables:
     visible:
       and:
         - accept_license
-    default: "VM.Standard.E3.Flex"
+    default: "VM.Standard.E4.Flex"
     enum:
     - "VM.Standard.E2.1"
     - "VM.Standard.E3.Flex"
+    - "VM.Standard.E4.Flex"
 
   ocpu_count:
     type: enum
